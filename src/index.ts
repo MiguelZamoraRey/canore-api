@@ -26,9 +26,9 @@ if (MONGO_URI) {
 guestRouter(app);
 
 app.get('/', (req: Request, res: Response) => {
-  res.send('Express + TypeScript Server');
+  res.send('Canore is alive!');
 });
 
-app.listen(port, () => {
+app.listen(port ? port : 3000, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
 });
