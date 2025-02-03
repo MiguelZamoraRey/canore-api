@@ -1,14 +1,14 @@
-import express, { Request, Response } from 'express';
-import guestRouter from './guest/router';
+import express, { NextFunction, Request, Response } from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import guestRouter from '@/guest/router';
 
 const dotenv = require('dotenv');
 
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT;
+const PORT = process.env.PORT;
 const MONGO_URI = process.env.MONGO_URI;
 
 app.use(cors());
@@ -29,6 +29,15 @@ app.get('/', (req: Request, res: Response) => {
   res.send('Canore is alive!');
 });
 
-app.listen(port ? port : 3000, () => {
-  console.log(`[server]: Server is running at http://localhost:${port}`);
+app.use((error: any, req: Request, res: Response, next: NextFunction) => {
+  console.error('Error: ', error);
+  if (!(error instanceof Error)) {
+    error = new Error('UNKNOWN_ERROR');
+  }
+  return res.status(error.status).json({
+    status: error.status,
+    error: error.message
+  });
 });
+
+export default app;
