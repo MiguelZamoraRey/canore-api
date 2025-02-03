@@ -13,7 +13,7 @@ const guestRouter = (app: Express) => {
   router.get('/:id', getAGuestById);
   router.post('/email', getAGuestByEmail);
   router.post('/', createNewGuest);
-  router.post('/update', updateCreatedGuest);
+  router.post('/update/:id', updateCreatedGuest);
   app.use('/guest', router);
 };
 

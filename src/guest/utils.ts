@@ -1,4 +1,4 @@
-const validateAndNormalizeEmail = (email: string): string | null => {
+export const validateAndNormalizeEmail = (email: string): string | null => {
   let emailToValidate = email.toLowerCase();
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const isValidEmail = emailRegex.test(emailToValidate);

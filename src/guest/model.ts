@@ -1,3 +1,4 @@
+import { DAY_TO_COME, GUEST_STATUS } from '@/utils/generalTypes';
 import { model, Schema } from 'mongoose';
 
 interface IGuest {
@@ -5,7 +6,7 @@ interface IGuest {
   email: string;
   completeName: string;
   confirmAssistance: boolean;
-  hanIntolerances: boolean;
+  hasIntolerances: boolean;
   intolerances: string;
   firstDay: DAY_TO_COME;
   favoriteSong: string;
@@ -22,7 +23,7 @@ const GuestSchema: Schema = new Schema(
     email: { type: String },
     completeName: { type: String },
     confirmAssistance: { type: Boolean },
-    hanIntolerances: { type: Boolean },
+    hasIntolerances: { type: Boolean },
     intolerances: { type: String },
     firstDay: { type: String },
     favoriteSong: { type: String },
