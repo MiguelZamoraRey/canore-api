@@ -72,7 +72,8 @@ export const updateCreatedGuest = async (req: Request, res: Response) => {
     hasCompanion,
     companionCompleteName,
     companionHasIntolerances,
-    companionIntolerances
+    companionIntolerances,
+    status
   } = req.body;
 
   const id = req.params.id;
@@ -88,7 +89,8 @@ export const updateCreatedGuest = async (req: Request, res: Response) => {
     ${hasCompanion} .
     ${companionCompleteName} .
     ${companionHasIntolerances} .
-    ${companionIntolerances}`);
+    ${companionIntolerances} .
+    ${status} .`);
 
   let validatedEmail = null;
   if (email) {
@@ -107,7 +109,8 @@ export const updateCreatedGuest = async (req: Request, res: Response) => {
     hasCompanion: hasCompanion,
     companionCompleteName: companionCompleteName,
     companionHasIntolerances: companionHasIntolerances,
-    companionIntolerances: companionIntolerances
+    companionIntolerances: companionIntolerances,
+    status: status
   });
 
   res.status(201).json({ response: RESPONSE_TYPES.OK, data: updatedData });
