@@ -30,9 +30,9 @@ export const getAGuestByEmail = async (req: Request, res: Response) => {
 };
 
 export const createNewGuest = async (req: Request, res: Response) => {
-  const { email } = req.body;
-  console.log(`createNewGuest ${email}`);
-  if (email) {
+  const { email, code } = req.body;
+  console.log(`createNewGuest ${email} ${code}`);
+  if (email && code) {
     const validatedEmail = validateAndNormalizeEmail(email);
     if (validatedEmail) {
       const guest = await getGuestByEmail(validatedEmail);
@@ -41,6 +41,7 @@ export const createNewGuest = async (req: Request, res: Response) => {
       } else {
         const guest = await createGuest({
           email: validatedEmail,
+          code: code,
           status: GUEST_STATUS.INCOMPLETE
         });
         res.status(201).json({ response: RESPONSE_TYPES.OK, data: guest });
