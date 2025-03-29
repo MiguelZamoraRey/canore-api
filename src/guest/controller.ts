@@ -30,18 +30,18 @@ export const getAGuestByEmail = async (req: Request, res: Response) => {
 };
 
 export const createNewGuest = async (req: Request, res: Response) => {
-  const { email, code } = req.body;
-  console.log(`createNewGuest ${email} ${code}`);
-  if (email && code) {
+  const { email } = req.body;
+  console.log(`createNewGuest ${email}}`);
+  if (email) {
     const validatedEmail = validateAndNormalizeEmail(email);
     if (validatedEmail) {
       const guest = await getGuestByEmail(validatedEmail);
       if (guest) {
+        console.log(`Lead with email: ${email} exists jet!`);
         res.status(200).json({ response: RESPONSE_TYPES.OK, data: guest });
       } else {
         const guest = await createGuest({
           email: validatedEmail,
-          code: code,
           status: GUEST_STATUS.INCOMPLETE
         });
         res.status(201).json({ response: RESPONSE_TYPES.OK, data: guest });
