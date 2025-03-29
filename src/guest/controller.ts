@@ -74,24 +74,29 @@ export const updateCreatedGuest = async (req: Request, res: Response) => {
     companionCompleteName,
     companionHasIntolerances,
     companionIntolerances,
+    childNames,
+    hasChilds,
     status
   } = req.body;
 
   const id = req.params.id;
 
   console.log(`updateCreatedGuest ${email},
-    ${completeName} .
-    ${confirmAssistance} .
-    ${hasIntolerances} .
-    ${intolerances} .
-    ${firstDay} .
-    ${favoriteSong} .
-    ${interestedInTransport} .
-    ${hasCompanion} .
-    ${companionCompleteName} .
-    ${companionHasIntolerances} .
-    ${companionIntolerances} .
-    ${status} .`);
+    completeName: ${completeName} .
+    confirmAssistance: ${confirmAssistance} .
+    hasIntolerances: ${hasIntolerances} .
+    intolerances: ${intolerances} .
+    firstDay: ${firstDay} .
+    favoriteSong: ${favoriteSong} .
+    interestedInTransport: ${interestedInTransport} .
+    hasCompanion: ${hasCompanion} .
+    companionCompleteName: ${companionCompleteName} .
+    companionHasIntolerances: ${companionHasIntolerances} .
+    companionIntolerances: ${companionIntolerances} .
+    status: ${status} .
+    childNames: ${childNames}.
+    hasChilds: ${hasChilds}.
+    `);
 
   let validatedEmail = null;
   if (email) {
@@ -111,6 +116,8 @@ export const updateCreatedGuest = async (req: Request, res: Response) => {
     companionCompleteName: companionCompleteName,
     companionHasIntolerances: companionHasIntolerances,
     companionIntolerances: companionIntolerances,
+    childNames: childNames,
+    hasChilds: hasChilds,
     status: status
   });
 

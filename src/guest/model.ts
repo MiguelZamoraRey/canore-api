@@ -15,6 +15,8 @@ interface IGuest {
   companionCompleteName: string;
   companionHasIntolerances: boolean;
   companionIntolerances: string;
+  childNames: string;
+  hasChilds: boolean;
   status: GUEST_STATUS;
 }
 
@@ -32,6 +34,8 @@ const GuestSchema: Schema = new Schema(
     companionCompleteName: { type: String },
     companionHasIntolerances: { type: Boolean },
     companionIntolerances: { type: String },
+    childNames: { type: String },
+    hasChilds: { type: Boolean },
     status: { type: String }
   },
   {
