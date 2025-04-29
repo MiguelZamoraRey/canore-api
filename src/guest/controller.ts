@@ -7,6 +7,7 @@ import {
 } from './repository';
 import { GUEST_STATUS, RESPONSE_TYPES } from '@/utils/generalTypes';
 import { validateAndNormalizeEmail } from './utils';
+import { updateGuestOnGSheet } from '@/services/GSheet';
 
 export const getAGuestById = async (req: Request, res: Response) => {
   const id = req.params.id;
@@ -44,6 +45,7 @@ export const createNewGuest = async (req: Request, res: Response) => {
           email: validatedEmail,
           status: GUEST_STATUS.INCOMPLETE
         });
+        await updateGuestOnGSheet(guest);
         res.status(201).json({ response: RESPONSE_TYPES.OK, data: guest });
       }
     } else {
@@ -120,6 +122,6 @@ export const updateCreatedGuest = async (req: Request, res: Response) => {
     hasChilds: hasChilds,
     status: status
   });
-
+  await updateGuestOnGSheet(updatedData!);
   res.status(201).json({ response: RESPONSE_TYPES.OK, data: updatedData });
 };
