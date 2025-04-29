@@ -11,23 +11,36 @@ export const updateGuestOnGSheet = async (guest: IGuest) => {
     if (GSheetHook) {
       const data = {
         _id: guest._id.toString(), // Asegúrate de incluir el campo _id
-        email: guest.email,
-        completeName: guest.completeName,
-        confirmAssistance: guest.confirmAssistance === true ? 'Sí' : 'No',
-        hasIntolerances: guest.hasIntolerances === true ? 'Sí' : 'No',
-        intolerances: guest.intolerances,
-        firstDay: guest.firstDay,
-        favoriteSong: guest.favoriteSong,
+        email: guest.email ? guest.email : '-',
+        completeName: guest.completeName ? guest.completeName : '-',
+        confirmAssistance:
+          guest.confirmAssistance && guest.confirmAssistance === true
+            ? 'Sí'
+            : 'No',
+        hasIntolerances:
+          guest.hasIntolerances && guest.hasIntolerances === true ? 'Sí' : 'No',
+        intolerances: guest.intolerances ? guest.intolerances : '-',
+        favoriteSong: guest.favoriteSong ? guest.favoriteSong : '-',
         interestedInTransport:
-          guest.interestedInTransport === true ? 'Sí' : 'No',
-        hasCompanion: guest.hasCompanion === true ? 'Sí' : 'No',
-        companionCompleteName: guest.companionCompleteName,
+          guest.interestedInTransport && guest.interestedInTransport === true
+            ? 'Sí'
+            : 'No',
+        hasCompanion:
+          guest.hasCompanion && guest.hasCompanion === true ? 'Sí' : 'No',
+        companionCompleteName: guest.companionCompleteName
+          ? guest.companionCompleteName
+          : '-',
         companionHasIntolerances:
-          guest.companionHasIntolerances === true ? 'Sí' : 'No',
-        companionIntolerances: guest.companionIntolerances,
-        childNames: guest.childNames,
-        hasChilds: guest.hasChilds === true ? 'Sí' : 'No',
-        status: guest.status
+          guest.companionHasIntolerances &&
+          guest.companionHasIntolerances === true
+            ? 'Sí'
+            : 'No',
+        companionIntolerances: guest.companionIntolerances
+          ? guest.companionIntolerances
+          : '-',
+        childNames: guest.childNames ? guest.childNames : '-',
+        hasChilds: guest.hasChilds && guest.hasChilds === true ? 'Sí' : 'No',
+        status: guest.status ? guest.status : 'INCOMPLETE'
       };
 
       fetch(GSheetHook, {
